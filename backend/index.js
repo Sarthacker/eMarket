@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use(cors({
     origin: [
     "http://localhost:5173",  // local dev
-    "https://e-market-brown.vercel.app/"  // Vercel URL
+    "https://e-market-brown.vercel.app"  // Vercel URL (no trailing slash!)
   ],
   credentials: true // Allow cookies to be sent
 }));
@@ -81,6 +81,10 @@ mongoose.connect(db) // async method
   })
   .catch((error)=> console.error(`Can't connect to the db: ${error}`));
 
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', message: 'Server is running' });
+});
 
 // auth middlewares
 async function auth(request,response,next){
@@ -144,7 +148,8 @@ app.post('/api/login', async (request,response)=>{
     response.cookie('authToken', token, {
       httpOnly: true,
       maxAge: 7 * 1000 * 60 * 60 * 24, // 7 days
-      sameSite: 'lax' // Changed for cross-origin requests
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      secure: process.env.NODE_ENV === 'production' // Required for cross-domain cookies
     });
 
     return response.json({ message: 'Login successful', user: { username } });

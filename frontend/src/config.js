@@ -1,5 +1,5 @@
 // API base URL - set VITE_API_URL in Vercel environment variables
-export const API_URL = import.meta.env.VITE_API_URL || "";
+export const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 // Helper function to make API calls
 export const api = async (endpoint, options = {}) => {
