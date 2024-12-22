@@ -20,7 +20,7 @@ class Listing(models.Model):
     title = models.CharField(max_length=32)
     description = models.TextField(max_length=200)
     currentBid = models.DecimalField(help_text="In Rupees (₹)", default=0.0, decimal_places=2, max_digits=12)
-    image = models.ImageField(upload_to='images/', blank=True)
+    image = models.ImageField(upload_to='images/',null=True, blank=True)
     category = models.CharField(max_length=3, choices=CATEGORIES, blank=True)
     listedBy = models.ForeignKey(User, on_delete=models.CASCADE, related_name="mylistings")
     listedOn = models.DateTimeField(auto_now_add=True)

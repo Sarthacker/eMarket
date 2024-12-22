@@ -71,7 +71,7 @@ def login_view(request):
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
 
-        # Check if authentication successful
+        #To check if authentication successful
         if user is not None:
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
@@ -116,7 +116,7 @@ def register(request):
 @login_required(login_url="login")
 def create_listing(request):
     if request.method == "POST":
-        createListingForm = CreateListingForm(request.POST)
+        createListingForm = CreateListingForm(request.POST, request.FILES)
         if createListingForm.is_valid():
             listing = Listing(
                 title = createListingForm.cleaned_data["title"],
@@ -129,14 +129,10 @@ def create_listing(request):
             listing.save()
             return HttpResponseRedirect(reverse("index"))
         
-        return render(request, "auctions/create_listing.html", {
-            "form": createListingForm
-        })
+        return render(request, "auctions/create_listing.html", {"form": createListingForm})
 
     else:
-        return render(request, "auctions/create_listing.html", {
-            "form": CreateListingForm()
-        })
+        return render(request, "auctions/create_listing.html", {"form": CreateListingForm()})
 
 def listing_view(request, pid):
     try:

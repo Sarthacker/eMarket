@@ -1,4 +1,5 @@
 {% extends "auctions/layout.html" %}
+{% load static %}
 
 {% block head %}
 <style>
@@ -9,38 +10,42 @@
     }
 
     .prod-img {
-        width: 60vw;
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        margin-bottom: 12px;
     }
 
     .prod-desc {
         margin: 12px 0;
     }
-
 </style>
 {% endblock %}
 
 {% block body %}
-<div class="listing-wrapper ">
+<div class="listing-wrapper">
     <div class="card mb-3 border-0">
         <div class="row g-0">
             <div class="col-md-4">
-                {% if product.image|length > 2 %}
-                <img class="img-fluid rounded" src="{{product.image}}" alt="Product Image">
+                {% if product.image %}
+                    <img class="img-fluid rounded prod-img" src="{{ product.image.url }}" alt="Product Image">
+                {% else %}
+                    <img class="img-fluid rounded prod-img" src="{% static 'images/default.jpg' %}" alt="Default Product Image">
                 {% endif %}
-            </div>
+            </div>            
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{product.title}}</h5>
-                    <h6 class="card-subtitle text-muted mb-2">{{product.get_category_display}} </h6>
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <h6 class="card-subtitle text-muted mb-2">{{ product.get_category_display }}</h6>
                     <p class="card-text">
-                        {{product.description}}
+                        {{ product.description }}
                     </p>
                     <div class="buy d-flex justify-content-between align-items-center">
                         <div class="price">
                             <h5>
-                                Current Price: ₹ {{product.currentBid}} 
+                                Current Price: ₹ {{ product.currentBid }} 
                                 {% if bidMsg is not None %}
-                                    <small class="text-muted">({{bidMsg}} among {{totalBids}} other(s))</small>
+                                    <small class="text-muted">({{ bidMsg }} among {{ totalBids }} other(s))</small>
                                 {% elif user.is_authenticated and user.id != product.listedBy.id %}
                                     <small class="text-muted">(Be the first to bid)</small>
                                 {% endif %}
@@ -51,13 +56,13 @@
                         <div class="mt-2">
                             <form action="{% url 'new_bid' pid=product.id %}" method="POST" class="d-flex">
                                 {% csrf_token %}
-                                {{bidForm.as_p}}
+                                {{ bidForm.as_p }}
                                 <input type="submit" value="Bid" class="btn btn-primary" 
                                 style="width: fit-content; height: fit-content; padding: 4px 16px; margin: 0;">
                             </form>
                         </div>
                     {% elif not user.is_authenticated %}
-                        <p class="mt-2">Pleace login to place your Bid</p>
+                        <p class="mt-2">Please login to place your Bid</p>
                     {% endif %}
                     <div>
                         {% if user.id == product.listedBy.id %}
@@ -79,10 +84,9 @@
                             </form>
                         {% endif %}
                     </div>
-                    
                 </div>
                 <div class="card-footer">
-                    <small class="text-muted">Listed On {{product.listedOn}} By {{product.listedBy}}</small>
+                    <small class="text-muted">Listed On {{ product.listedOn }} By {{ product.listedBy }}</small>
                 </div>
             </div>
         </div>
@@ -91,21 +95,21 @@
 
 <div class="comments-wrapper">
     <div class="col-12 pb-4 pt-4">
-        <h3>Comments</h2>
+        <h3>Comments</h3>
         <div class="mt-4">
             <form method="POST" action="{% url 'comment' pid=product.id %}" class="flex-column d-flex">
                 {% csrf_token %}
-                {{commentForm}}
+                {{ commentForm }}
                 <input type="submit" value="Post" class="btn btn-secondary mt-2">
             </form>
         </div>
 
         <div class="d-flex flex-column">
             {% for comment in comments %}
-                <div class="comment border-bottom border-info float-left mt-4 text-justify ">
-                    <h4>{{comment.user.username.title}}</h4>
-                    <span class="text-muted">~ {{comment.cmtOn}}</span>
-                    <p class="mt-1">{{comment.cmtMsg}}</p>
+                <div class="comment border-bottom border-info float-left mt-4 text-justify">
+                    <h4>{{ comment.user.username.title }}</h4>
+                    <span class="text-muted">~ {{ comment.cmtOn }}</span>
+                    <p class="mt-1">{{ comment.cmtMsg }}</p>
                 </div>
             {% empty %}
                 <div class="mt-4">
@@ -114,6 +118,5 @@
             {% endfor %}
         </div>
     </div>
-    
 </div>
 {% endblock %}
