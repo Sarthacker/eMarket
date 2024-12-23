@@ -248,7 +248,7 @@ def new_bid(request, pid):
             highestBid = Bid.objects.filter(listing=listing).order_by('-bidPrice').first()
             if (highestBid is not None and bidPrice <= highestBid.bidPrice) or bidPrice <= listing.currentBid:
                 return render(request, "auctions/error/invalid_method.html", {
-                    "err_msg": "Bid a little higher. It seems to be lesser than the highest bid made so far.",
+                    "err_msg": "Make a bid higher than the current price.",
                     "prod_id": pid
                 })
 
