@@ -13,7 +13,7 @@ class CreateListingForm(forms.ModelForm):
         model = Listing
         fields = ['title', 'description', 'currentBid', 'image', 'category']
         widgets = {
-            "description": forms.Textarea(attrs={
+                "description": forms.Textarea(attrs={
                 'rows': 2, 
                 'cols': 2, 
                 'style': 'height: 100px; width: max-width; min-width: 40vw;'
