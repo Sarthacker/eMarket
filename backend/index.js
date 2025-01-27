@@ -27,7 +27,10 @@ app.use(cookieParser());
 
 // CORS configuration for React frontend
 app.use(cors({
-  origin: 'http://localhost:5173', // Vite dev server
+    origin: [
+    "http://localhost:5173",  // local dev
+    "https://e-market-brown.vercel.app/"  // Vercel URL
+  ],
   credentials: true // Allow cookies to be sent
 }));
 
