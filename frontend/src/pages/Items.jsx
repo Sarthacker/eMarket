@@ -218,12 +218,22 @@ function Items(){
                   className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
 
-                <button
-                  type="submit"
-                  className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
-                >
-                  Submit Bid
-                </button>
+                {isLoggedIn ? (
+                  <button
+                    type="submit"
+                    className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+                  >
+                    Submit Bid
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => navigate("/login")}
+                    className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+                  >
+                    Login to Bid
+                  </button>
+                )}
               </form>
             )}
 
