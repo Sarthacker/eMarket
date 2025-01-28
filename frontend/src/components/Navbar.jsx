@@ -16,7 +16,7 @@ const Navbar = () => {
     } catch (err) {
       console.error("Logout failed", err);
     } finally {
-      navigate("/login");
+      navigate("/");
     }
   };
 
