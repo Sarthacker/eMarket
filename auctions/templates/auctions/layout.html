@@ -8,142 +8,142 @@
     <link href="{% static 'auctions/styles.css' %}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     {% block head %}{% endblock %}
 </head>
 
 <body>
-    <h1>Auctions</h1>
-    <div>
-        {% if user.is_authenticated %}
-        Signed in as <strong>{{ user.username }}</strong>.
-        <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link text-success" href="{% url 'watchlist' %}">
-                <i class="fas fa-bookmark nav-icon"></i>
-                <span class="nav-txt">Watchlist</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-success" href="{% url 'create_listing' %}">
-                <i class="fas fa-plus-circle nav-icon"></i>
-                <span class="nav-txt">Create Listing</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-danger" href="{% url 'logout' %}">
-                <i class="fas fa-power-off nav-icon"></i>
-                <span class="nav-txt">Logout</span>
-            </a>
-        </li>
-    </ul>
-        {% else %}
-        Not signed in.
-        <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link text-success" href="{% url 'login' %}">
-                <i class="fas fa-sign-in-alt nav-icon"></i>
-                <span class="nav-txt">Login</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-success" href="{% url 'register' %}">
-                <i class="fas fa-user-plus nav-icon"></i>
-                <span class="nav-txt">Register</span>
-            </a>
-        </li>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="{% url 'index' %}">Auctions</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <span class="nav-link">Signed in as <strong>{{ user.username }}</strong></span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-success" href="{% url 'watchlist' %}">
+                        <i class="fas fa-bookmark nav-icon"></i>
+                        <span class="nav-txt">Watchlist</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-success" href="{% url 'create_listing' %}">
+                        <i class="fas fa-plus-circle nav-icon"></i>
+                        <span class="nav-txt">Create Listing</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-danger" href="{% url 'logout' %}">
+                        <i class="fas fa-power-off nav-icon"></i>
+                        <span class="nav-txt">Logout</span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link text-success" href="{% url 'login' %}">
+                        <i class="fas fa-sign-in-alt nav-icon"></i>
+                        <span class="nav-txt">Login</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-success" href="{% url 'register' %}">
+                        <i class="fas fa-user-plus nav-icon"></i>
+                        <span class="nav-txt">Register</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container mt-4">
+        <ul class="nav nav-pills flex-column flex-sm-row">
+            <li class="nav-item">
+                <a class="nav-link text-secondary" href="{% url 'index' %}">
+                    <i class="fas fa-list-alt nav-icon"></i>
+                    <span class="nav-txt">Active Listings</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'category' cid='EnG' %}">
+                    <i class="fas fa-laptop nav-icon"></i>
+                    <span class="nav-txt">Electronics & Gadgets</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'category' cid='FnA' %}">
+                    <i class="fas fa-tshirt nav-icon"></i>
+                    <span class="nav-txt">Fashion & Apparel</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'category' cid='HnL' %}">
+                    <i class="fas fa-home nav-icon"></i>
+                    <span class="nav-txt">Home & Living</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'category' cid='BnP' %}" class="nav-link">
+                    <i class="fas fa-magic nav-icon"></i>
+                    <span class="nav-txt">Beauty & Personal Care</span>
+                </a>
+            </li>
+    
+            <li class="nav-item">
+                <a href="{% url 'category' cid='SnF' %}" class="nav-link">
+                    <i class="fas fa-dumbbell nav-icon"></i>
+                    <span class="nav-txt">Sports & Fitness</span>
+                </a>
+            </li>
+    
+            <li class="nav-item">
+                <a href="{% url 'category' cid='BnS' %}" class="nav-link">
+                    <i class="fas fa-book nav-icon"></i>
+                    <span class="nav-txt">Books & Stationery</span>
+                </a>
+            </li>
+    
+            <li class="nav-item">
+                <a href="{% url 'category' cid='TnG' %}" class="nav-link">
+                    <i class="fas fa-gamepad nav-icon"></i>
+                    <span class="nav-txt">Toys & Games</span>
+                </a>
+            </li>
+    
+            <li class="nav-item">
+                <a href="{% url 'category' cid='HnW' %}" class="nav-link">
+                    <i class="fas fa-heartbeat nav-icon"></i>
+                    <span class="nav-txt">Health & Wellness</span>
+                </a>
+            </li>
+    
+            <li class="nav-item">
+                <a href="{% url 'category' cid='KnD' %}" class="nav-link">
+                    <i class="fas fa-utensils nav-icon"></i>
+                    <span class="nav-txt">Kitchen & Dining</span>
+                </a>
+            </li>
+    
+            <li class="nav-item">
+                <a href="{% url 'category' cid='JnA' %}" class="nav-link">
+                    <i class="fas fa-ring nav-icon"></i>
+                    <span class="nav-txt">Jewelry & Accessories</span>
+                </a>
+            </li>
+                
+            <li class="nav-item">
+                <a href="{% url 'closed'%}" class="nav-link">
+                    <i class="fas fa-clipboard-check nav-icon"></i>
+                    <span class="nav-txt">Closed Auctions</span>
+                </a>
+            </li>
         </ul>
-        {% endif %}
+        {% block body %}
+        {% endblock %}
     </div>
-    <ul class="nav">
-
-        <li class="nav-item">
-            <a class="nav-link text-secondary" href="{% url 'index' %}">
-                <i class="fas fa-list-alt nav-icon"></i>
-                <span class="nav-txt">Active Listings</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'category' cid='EnG' %}">
-                <i class="fas fa-laptop nav-icon"></i>
-                <span class="nav-txt">Electronics & Gadgets</span>
-            </a>
-        </li>        
-
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'category' cid='FnA' %}">
-                <i class="fas fa-tshirt nav-icon"></i>
-                <span class="nav-txt">Fashion & Apparel</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'category' cid='HnL' %}">
-                <i class="fas fa-home nav-icon"></i>
-                <span class="nav-txt">Home & Living</span>
-            </a>
-        </li>        
-
-        <li class="nav-item">
-            <a href="{% url 'category' cid='BnP' %}" class="nav-link">
-                <i class="fas fa-magic nav-icon"></i>
-                <span class="nav-txt">Beauty & Personal Care</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="{% url 'category' cid='SnF' %}" class="nav-link">
-                <i class="fas fa-dumbbell nav-icon"></i>
-                <span class="nav-txt">Sports & Fitness</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="{% url 'category' cid='BnS' %}" class="nav-link">
-                <i class="fas fa-book nav-icon"></i>
-                <span class="nav-txt">Books & Stationery</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="{% url 'category' cid='TnG' %}" class="nav-link">
-                <i class="fas fa-gamepad nav-icon"></i>
-                <span class="nav-txt">Toys & Games</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="{% url 'category' cid='HnW' %}" class="nav-link">
-                <i class="fas fa-heartbeat nav-icon"></i>
-                <span class="nav-txt">Health & Wellness</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="{% url 'category' cid='KnD' %}" class="nav-link">
-                <i class="fas fa-utensils nav-icon"></i>
-                <span class="nav-txt">Kitchen & Dining</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="{% url 'category' cid='JnA' %}" class="nav-link">
-                <i class="fas fa-ring nav-icon"></i>
-                <span class="nav-txt">Jewelry & Accessories</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="{% url 'closed'%}" class="nav-link">
-                <i class="fas fa-clipboard-check nav-icon"></i>
-                <span class="nav-txt">Closed Auctions</span>
-            </a>
-        </li>
-    </ul>
-    <hr>
-    {% block body %}
-    {% endblock %}
 </body>
-
 </html>

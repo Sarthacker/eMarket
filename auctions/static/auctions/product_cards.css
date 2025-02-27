@@ -1,16 +1,66 @@
+/* <style> */
+.card-wrapper-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
 .card-wrapper-link:hover {
     text-decoration: none;
 }
 
-.card{
-    border-radius: 4px;
+.card {
+    border-radius: 8px;
     background: #fff;
-    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
-    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+    transition: 0.3s ease-in-out;
     cursor: pointer;
+    overflow: hidden;
 }
 
-.card:hover{
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
 }
+
+.card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.card-subtitle {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.card-text {
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.card-footer {
+    background: #f8f9fa;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+/* </style> */

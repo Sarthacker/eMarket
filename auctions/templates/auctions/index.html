@@ -3,44 +3,39 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'auctions/product_cards.css' %}" type="text/css" >
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 {% endblock %}
 
 {% block body %}
-<h2>Active Listings</h2>
+<h2 class="page-title">Active Listings</h2>
 
-<div class="container" style="min-width: 95vw;">
+<div class="container">
     <div class="row">
         {% for listing in listings %}
-            <div class="col-12 col-sm-8 col-md-6 col-lg-4" style="margin: 12px 0;">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="margin-bottom: 20px;">
                 <a href="{% url 'listing' pid=listing.id %}" class="card-wrapper-link">
                     <div class="card">
                         {% if listing.image|length > 2 %}
-                            <img class="card-img" src="{{listing.image}}" alt="Product Image">
+                            <img class="card-img" src="{{ listing.image }}" alt="Product Image">
                         {% endif %}
                         <div class="card-body">
-                            <h4 class="card-title">{{listing.title}}</h4>
-                            <h6 class="card-subtitle mb-2 text-muted">{{listing.get_category_display}}</h6>
-                            <p class="card-text">
-                                {{listing.description}}
-                            </p>
-                            <div class="buy d-flex justify-content-between align-items-center">
-                                <div class="price text-success">
-                                    <h5>Price: ₹ {{listing.currentBid}} </h5>
-                                </div>
+                            <h4 class="card-title">{{ listing.title }}</h4>
+                            <h6 class="card-subtitle text-muted">{{ listing.get_category_display }}</h6>
+                            <p class="card-text">{{ listing.description }}</p>
+                            <div class="buy">
+                                <h5 class="price">₹ {{ listing.currentBid }}</h5>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">Listed On {{listing.listedOn}}</small>
+                            <small class="text-muted">Listed On {{ listing.listedOn }}</small>
                         </div>
                     </div>
                 </a>
-                
             </div>
         {% empty %}
-            <i>No Active Listing..</i>
+            <p class="no-listing text-center">No Active Listings Available</p>
         {% endfor %}
-
     </div>
 </div>
-
 {% endblock %}
+
