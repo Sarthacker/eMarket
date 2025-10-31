@@ -14,7 +14,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const JWT_SECRET=process.env.JWT_SECRET;
-const db=process.env.db;
+const db=process.env.DB;
+const port=process.env.PORT || 3000;
 
 export const app=express();
 app.use(morgan('dev'));
@@ -62,7 +63,6 @@ import Bid from './models/bid.js'
 mongoose.connect(db) // async method
   .then((response)=> {
     // listen for requests
-    let port=3000;
     app.listen(port);
     console.log(`Server running at http://127.0.0.1:${port}`)
     console.log(`Connected to db: ${response}`)
