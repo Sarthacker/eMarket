@@ -10,25 +10,33 @@
 <body class="bg-gray-50 text-gray-800">
 
   <!-- Navbar -->
-  <nav class="bg-white shadow-md">
+<nav class="bg-white shadow-md">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <a href="/" class="text-2xl font-bold text-blue-600">
+    <!-- Logo -->
+    <a href="/" class="flex items-center space-x-2">
       <img src="/logo/logo.png" alt="eMarket Logo" class="w-30 h-10">
     </a>
-    <div class="flex items-center gap-4">
+
+    <!-- Navigation Links -->
+    <div class="flex items-center gap-6">
+      
       <% if (isLoggedIn) { %>
         <!-- Show these links only when logged in -->
         <span class="text-gray-600">Welcome, <strong><%= user.username %></strong></span>
+        <a href="/create" class="text-blue-600 hover:text-blue-600">Create Listing</a>
         <a href="/my-listings" class="text-gray-600 hover:text-blue-600">My Listings</a>
+        <a href="/about" class="text-gray-600 hover:text-blue-600">About Us</a>
         <a href="/logout" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">Logout</a>
-      <% } else { %>
-        <!-- Show these links only when NOT logged in -->
+        <% } else { %>
+          <!-- Show these links only when NOT logged in -->
+        <a href="/about" class="text-gray-600 hover:text-blue-600 font-medium">About Us</a>
         <a href="/login" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Login</a>
         <a href="/signup" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">Sign Up</a>
       <% } %>
     </div>
   </div>
 </nav>
+
 
   <!-- Create Listing Form -->
   <section class="max-w-3xl mx-auto mt-12 bg-white shadow-md rounded-2xl p-8">

@@ -58,6 +58,7 @@ const upload = multer({
 import Listing from './models/listings.js';
 import User from './models/user.js';
 import Bid from './models/bid.js'
+import { request } from 'http';
 
 // Connect to db
 mongoose.connect(db) // async method
@@ -347,4 +348,8 @@ app.route('/item/:id/edit',auth)
         console.error(`Update Failed: ${error}`);
         return response.status(500).send('Error updating the item');
     }
+  });
+
+  app.get('/about',(request,response)=>{
+    response.render('about');
   });
