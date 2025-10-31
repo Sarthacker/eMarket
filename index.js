@@ -350,6 +350,10 @@ app.route('/item/:id/edit',auth)
     }
   });
 
-  app.get('/about',(request,response)=>{
-    response.render('about');
-  });
+app.get('/about',(request,response)=>{
+  return response.render('about');
+});
+
+app.use((request,response)=>{
+    return response.status(404).render('404',{title:'Page Not Found'});
+});
