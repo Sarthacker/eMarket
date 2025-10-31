@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eMarket | Edit Item</title>
+  <%- include('./partials/icon.ejs') %>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <%- include('./partials/navbar.ejs') %>
+
+  <!-- Edit Item Section -->
+  <section class="container mx-auto px-4 py-12">
+    <div class="bg-white shadow-md rounded-2xl p-8 max-w-2xl mx-auto">
+      <h1 class="text-3xl font-bold text-center text-blue-600 mb-8">Edit Your Listing</h1>
+
+      <form action="/item/<%= item._id %>/edit" method="POST" class="space-y-6" enctype="multipart/form-data">
+
+        <!-- Item Name -->
+        <div>
+          <label for="name" class="block text-gray-700 font-semibold mb-2">Item Name</label>
+          <input type="text" id="name" name="name" value="<%= item.name %>" required
+                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+        </div>
+
+        <!-- Description -->
+        <div>
+          <label for="description" class="block text-gray-700 font-semibold mb-2">Description</label>
+          <textarea id="description" name="description" rows="4" required
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"><%= item.description %></textarea>
+        </div>
+
+        <!-- Starting Bid -->
+        <div>
+          <label for="startingBid" class="block text-gray-700 font-semibold mb-2">Starting Bid (₹)</label>
+          <input type="number" id="startingBid" name="startingBid" value="<%= item.startingBid %>" required
+                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+        </div>
+
+        <!-- End Date -->
+        <div>
+          <label for="endDate" class="block text-gray-700 font-semibold mb-2">Auction End Date</label>
+          <input type="datetime-local" id="endDate" name="endDate" 
+                 value="<%= new Date(item.endDate).toISOString().slice(0,16) %>" required
+                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+        </div>
+
+        <!-- Image URL -->
+        <div>
+          <label for="image" class="block text-gray-700 font-semibold mb-2">Product Image</label>
+          <div class="flex items-center space-x-6">
+            <div>
+              <input 
+                type="file" 
+                id="image" 
+                name="image" 
+                accept="image/*"
+                class="block w-[610px] text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                onchange="previewFile(event)"
+              />
+              <p class="text-sm text-gray-500 mt-2">Upload a new image (optional)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preview -->
+        <div class="mt-6 text-center">
+          <img src="<%= item.image %>" alt="<%= item.name %>" class="w-48 h-48 object-cover rounded-lg mx-auto shadow-md">
+          <p class="text-gray-500 text-sm mt-2">Current image preview</p>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center mt-8">
+          <button type="submit"
+                  class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+            Save Changes
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <%- include('./partials/footer.ejs') %>
+
+</body>
+</html>

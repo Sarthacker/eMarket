@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eMarket | <%= item.name %></title>
+  <%- include('./partials/icon.ejs') %>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <%- include('./partials/navbar.ejs') %>
+
+  <!-- Item Section -->
+  <section class="container mx-auto px-4 py-12">
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden md:flex">
+      
+      <!-- Image -->
+      <div class="md:w-1/2">
+        <img src="<%= item.image && item.image.trim() !== '' ? item.image : '/logo/default.png' %>" alt="<%= item.name %>" class="w-full h-80 object-cover md:h-full">
+      </div>
+
+      <!-- Item Details -->
+      <div class="md:w-1/2 p-8 flex flex-col justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-800 mb-2"><%= item.name %></h1>
+          <p class="text-gray-600 mb-4">Listed By <b><%= listedBy.username %></b></p>
+          <p class="text-gray-600 mb-4"><%= item.description %></p>
+          
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+            <div>
+              <p class="text-lg text-gray-700 font-semibold">Current Highest Bid:</p>
+              <p class="text-2xl font-bold text-blue-600">₹<%= item.currentBid || item.startingBid %></p>
+              <% if (highestBidingUser && highestBidingUser.username) { %>
+                <p class="text-sm text-gray-500 mt-1">By <%= highestBidingUser.username %></p>
+              <% } %>
+            </div>
+          </div>
+          
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+            <% if (item.active) { %>
+              <p class="text-lg text-gray-700 font-semibold">Auction Ends:</p>
+              <p class="text-gray-600"><%= new Date(item.endDate).toLocaleString() %></p>
+              <% } else { %>
+                <p class="text-lg text-gray-700 font-semibold">Auction has been ended by the owner</p>
+              <% } %>
+          </div>
+        </div>
+
+        <% if (!item.active) { %>
+          <!-- Auction Ended Message -->
+          <div class="mt-6 bg-gray-100 border border-gray-300 rounded-lg p-5 text-center">
+            <h2 class="text-xl font-bold text-red-600 mb-2">Auction Ended</h2>
+            <% if (highestBidingUser && highestBidingUser.username && highestBidingUser.username!=listedBy.username) { %>
+              <p class="mt-2 text-gray-700">
+                The item has been bought by 
+                <b><%= highestBidingUser.username %></b> 
+                for 
+                <span class="font-semibold text-blue-600">₹<%= item.currentBid %></span>.
+              </p>
+            <% } else { %>
+              <p class="mt-2 text-gray-700">No bids were placed on this item.</p>
+            <% } %>
+          </div>
+
+        <% } else if (listedBy.username === user.username) { %>
+          <!-- End Auction Button (Active Auction, Owner View) -->
+          <form action="/item/<%= item._id %>/end" method="GET" class="mt-6">
+            <button type="submit"
+              class="w-full bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition">
+              End Auction
+            </button>
+          </form>
+
+        <% } else { %>
+          <!-- Bid Form (Active Auction, Other Users) -->
+          <form action="/item/<%= item._id %>" method="POST" class="mt-6 space-y-4">
+            <label class="block text-gray-700 font-semibold mb-2">Place Your Bid (₹)</label>
+            <input type="number" name="bidAmount" required min="<%= item.currentBid + 1 %>"
+              placeholder="Enter your bid amount"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+            <button type="submit"
+              class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+              Submit Bid
+            </button>
+          </form>
+        <% } %>
+
+        <!-- Timer -->
+         <% if(item.active){ %>
+        <div class="mt-6 text-sm text-gray-500">
+          <p>Ends on: <%= new Date(item.endDate).toLocaleString() %></p>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <%- include('./partials/footer.ejs') %>
+
+</body>
+</html>

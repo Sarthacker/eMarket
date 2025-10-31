@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eMarket | Home</title>
+  <%- include('./partials/icon.ejs') %>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <%- include('./partials/navbar.ejs') %>
+
+  <!-- Hero Section -->
+  <section class="text-center py-16 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to eMarket</h1>
+    <p class="text-lg mb-6">Bid. Win. Sell. Experience real-time auctions like never before.</p>
+    <a href="/create" class="bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">Start Selling</a>
+  </section>
+
+  <!-- Active Auctions -->
+  <section class="container mx-auto px-4 py-12">
+    <h2 class="text-2xl font-semibold mb-8 text-gray-700">🔥 Active Auctions</h2>
+
+    <% if (activeItems && activeItems.length > 0) { %>
+      <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <% activeItems.forEach(item => { %>
+          <div class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+            <img 
+                src="<%= item.image && item.image.trim() !== '' ? item.image : '/logo/default.png' %>" 
+                alt="<%= item.name %>" 
+                class="w-full h-48 object-cover opacity-80">
+            <div class="p-4">
+              <h3 class="text-lg font-bold mb-2"><%= item.name %></h3>
+              <p class="text-sm text-gray-500 mb-2"><%= item.description.substring(0, 60) %>...</p>
+              <p class="text-blue-600 font-semibold mb-2">Starting Bid: ₹<%= item.startingBid %></p>
+              <p class="text-blue-600 font-semibold mb-4">Current Bid: ₹<%= item.currentBid %></p>
+              <a href="/item/<%= item._id %>" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Place a Bid</a>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <p class="text-center text-gray-500 mt-8">
+        No active auctions at the moment. Be the first to 
+        <a href="/create" class="text-blue-600 hover:underline">list an item</a>!
+      </p>
+    <% } %>
+  </section>
+
+  <!-- Finished Auctions -->
+  <section class="container mx-auto px-4 py-12 border-t border-gray-200">
+    <h2 class="text-2xl font-semibold mb-8 text-gray-700">🏁 Finished Auctions</h2>
+
+    <% if (finishedItems && finishedItems.length > 0) { %>
+      <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <% finishedItems.forEach(item => { %>
+          <div class="bg-gray-100 rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden">
+            <img 
+                src="<%= item.image && item.image.trim() !== '' ? item.image : '/logo/default.png' %>" 
+                alt="<%= item.name %>" 
+                class="w-full h-48 object-cover opacity-80">
+            <div class="p-4">
+              <h3 class="text-lg font-bold mb-2"><%= item.name %></h3>
+              <p class="text-sm text-gray-600 mb-2"><%= item.description.substring(0, 60) %>...</p>
+              <p class="text-gray-700 font-semibold mb-2">Starting Bid: ₹<%= item.startingBid %></p>
+              <p class="text-green-600 font-semibold mb-2">Final Bid: ₹<%= item.currentBid %></p>
+              <a href="/item/<%= item._id %>" class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">View Item</a>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <p class="text-center text-gray-500 mt-8">
+        No finished auctions yet. Keep bidding to win amazing items!
+      </p>
+    <% } %>
+  </section>
+
+  <!-- Footer -->
+  <%- include('./partials/footer.ejs') %>
+
+</body>
+</html>
