@@ -30,7 +30,7 @@ Welcome to **eMarket**, a dynamic and modern **online auction platform** built u
 
 | Category | Technology |
 |-----------|-------------|
-| Backend | Node.js, Express.js,ES6 |
+| Backend | Node.js, Express.js, ES6 |
 | Database | MongoDB Atlas |
 | Frontend | EJS Templates, Tailwind CSS |
 | Authentication | Express-Session and JWT |
@@ -68,3 +68,4 @@ node index
 http://localhost:3000
 
 ```
+
