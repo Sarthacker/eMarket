@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useAuth } from "../components/AuthContext";
+import { API_URL } from "../config";
 
 const EditItem = () => {
   const { id } = useParams();
@@ -30,7 +31,7 @@ const EditItem = () => {
   useEffect(() => {
     const fetchItem = async () => {
       try {
-        const res = await fetch(`/api/listings/${id}/edit`, {
+        const res = await fetch(`${API_URL}/api/listings/${id}/edit`, {
           credentials: "include",
         });
 
@@ -87,7 +88,7 @@ const EditItem = () => {
         if (value !== null) data.append(key, value);
       });
 
-      const res = await fetch(`/api/listings/${id}`, {
+      const res = await fetch(`${API_URL}/api/listings/${id}`, {
         method: "PUT",
         credentials: "include",
         body: data,

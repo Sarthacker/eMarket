@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { API_URL } from "../config";
 
 const Home = () => {
   const [activeItems, setActiveItems] = useState([]);
@@ -15,7 +16,7 @@ const Home = () => {
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        const res = await fetch("/api/listings", { credentials: "include" });
+        const res = await fetch(`${API_URL}/api/listings`, { credentials: "include" });
         const data = await res.json();
         if (res.ok) {
           setActiveItems(data.activeItems || []);

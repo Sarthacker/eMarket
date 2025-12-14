@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useAuth } from "../components/AuthContext";
+import { API_URL } from "../config";
 
 function CreateListing(){
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ function CreateListing(){
         if (value !== null) data.append(key, value);
       });
 
-      const res = await fetch("/api/listings", {
+      const res = await fetch(`${API_URL}/api/listings`, {
         method: "POST",
         credentials: "include",
         body: data,

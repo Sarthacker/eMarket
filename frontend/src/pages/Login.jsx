@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../components/AuthContext";
+import { API_URL } from "../config";
 
 function Login(){
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ function Login(){
     setError("");
 
     try {
-      const res = await fetch("/api/login", {
+      const res = await fetch(`${API_URL}/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

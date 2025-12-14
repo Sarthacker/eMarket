@@ -1,5 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
+import { API_URL } from "../config";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -7,7 +8,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch("/api/logout", {
+      await fetch(`${API_URL}/api/logout`, {
         method: "POST",
         credentials: "include",
       });

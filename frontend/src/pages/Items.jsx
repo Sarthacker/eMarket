@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useAuth } from "../components/AuthContext";
+import { API_URL } from "../config";
 
 function Items(){
   const { id } = useParams();
@@ -22,7 +23,7 @@ function Items(){
   useEffect(() => {
     const fetchItem = async () => {
       try {
-        const res = await fetch(`/api/listings/${id}`, {
+        const res = await fetch(`${API_URL}/api/listings/${id}`, {
           credentials: "include",
         });
         const data = await res.json();
@@ -48,7 +49,7 @@ function Items(){
     setError("");
 
     try {
-      const res = await fetch(`/api/listings/${id}/bid`, {
+      const res = await fetch(`${API_URL}/api/listings/${id}/bid`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -73,7 +74,7 @@ function Items(){
 
   const handleEndAuction = async () => {
     try {
-      const res = await fetch(`/api/listings/${id}/end`, {
+      const res = await fetch(`${API_URL}/api/listings/${id}/end`, {
         method: "POST",
         credentials: "include",
       });
@@ -86,7 +87,7 @@ function Items(){
       }
 
       // Refetch item to get updated state
-      const itemRes = await fetch(`/api/listings/${id}`, { credentials: "include" });
+      const itemRes = await fetch(`${API_URL}/api/listings/${id}`, { credentials: "include" });
       const itemData = await itemRes.json();
       setItem(itemData.item);
     } catch (err) {

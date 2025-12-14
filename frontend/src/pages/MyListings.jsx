@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useAuth } from "../components/AuthContext";
+import { API_URL } from "../config";
 
 function MyListings(){
   const { user, isLoggedIn } = useAuth();
@@ -16,7 +17,7 @@ function MyListings(){
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        const res = await fetch("/api/my-listings", {
+        const res = await fetch(`${API_URL}/api/my-listings`, {
           credentials: "include",
         });
         const data = await res.json();
