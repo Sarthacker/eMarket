@@ -9,6 +9,10 @@ const EditItem = () => {
   const navigate = useNavigate();
   const { isLoggedIn, user } = useAuth();
 
+  useEffect(() => {
+    document.title = "eMarket | Edit Listing";
+  }, []);
+
   const [formData, setFormData] = useState({
     name: "",
     description: "",

@@ -10,6 +10,10 @@ function MyListings(){
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    document.title = "eMarket | My Listings";
+  }, []);
+
+  useEffect(() => {
     const fetchListings = async () => {
       try {
         const res = await fetch("/api/my-listings", {

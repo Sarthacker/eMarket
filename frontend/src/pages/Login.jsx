@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../components/AuthContext";
 
 function Login(){
   const navigate = useNavigate();
   const { login } = useAuth();
+
+  useEffect(() => {
+    document.title = "eMarket | Login";
+  }, []);
 
   const [formData, setFormData] = useState({
     username: "",

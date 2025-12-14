@@ -1,6 +1,11 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function NoItem(){
+  useEffect(() => {
+    document.title = "eMarket | Item Not Found";
+  }, []);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="bg-white rounded-2xl shadow-lg p-12 text-center max-w-md w-full">

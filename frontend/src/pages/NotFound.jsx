@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 function NotFound({ isLoggedIn, user }){
+  useEffect(() => {
+    document.title = "eMarket | Page Not Found";
+  }, []);
+
   return (
     <div className="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
       {/* Navbar */}

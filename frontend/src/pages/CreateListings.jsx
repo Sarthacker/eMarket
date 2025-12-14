@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -7,6 +7,10 @@ import { useAuth } from "../components/AuthContext";
 function CreateListing(){
   const navigate = useNavigate();
   const { isLoggedIn, user } = useAuth();
+
+  useEffect(() => {
+    document.title = "eMarket | Create Listing";
+  }, []);
 
   const [formData, setFormData] = useState({
     name: "",

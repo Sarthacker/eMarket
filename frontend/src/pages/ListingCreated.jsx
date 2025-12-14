@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const ListingCreated = ({ isLoggedIn, user }) => {
+  useEffect(() => {
+    document.title = "eMarket | Listing Created";
+  }, []);
+
   return (
     <div className="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
       {/* Navbar */}

@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const About = ({ isLoggedIn, user }) => {
+  useEffect(() => {
+    document.title = "eMarket | About Us";
+  }, []);
+
   return (
     <div className="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
       {/* Navbar */}

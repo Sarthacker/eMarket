@@ -16,6 +16,10 @@ function Items(){
   const [error, setError] = useState("");
 
   useEffect(() => {
+    document.title = item ? `eMarket | ${item.name}` : "eMarket | Item";
+  }, [item]);
+
+  useEffect(() => {
     const fetchItem = async () => {
       try {
         const res = await fetch(`/api/listings/${id}`, {

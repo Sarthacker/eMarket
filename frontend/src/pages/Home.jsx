@@ -9,6 +9,10 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    document.title = "eMarket | Home";
+  }, []);
+
+  useEffect(() => {
     const fetchListings = async () => {
       try {
         const res = await fetch("/api/listings", { credentials: "include" });
