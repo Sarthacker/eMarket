@@ -63,9 +63,9 @@ const upload = multer({
   }
 });
 
-import Listing from './backend/models/listings.js';
-import User from './backend/models/user.js';
-import Bid from './backend/models/bid.js'
+import Listing from './models/listings.js';
+import User from './models/user.js';
+import Bid from './models/bid.js'
 import { request } from 'http';
 
 // Connect to db
