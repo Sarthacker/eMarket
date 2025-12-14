@@ -1,5 +1,5 @@
 ﻿# 🛍️ eMarket – Online Auction Platform  
-Welcome to **eMarket**, a dynamic and modern **online auction platform** built using **Node.js**, **Express**, **MongoDB**, and **EJS**.  eMarket connects **buyers and sellers** through auctions — allowing users to **list items**, **bid competitively**, and **buy their favorite products** 🎯 
+Welcome to **eMarket**, a dynamic and modern **online auction platform** built using **Node.js**, **Express**, **MongoDB**, and **ReactJS**.  eMarket connects **buyers and sellers** through auctions — allowing users to **list items**, **bid competitively**, and **buy their favorite products** 🎯 
 
 ---
 ## ✨ Features
@@ -30,9 +30,9 @@ Welcome to **eMarket**, a dynamic and modern **online auction platform** built u
 
 | Category | Technology |
 |-----------|-------------|
-| Backend | Node.js, Express.js, ES6 |
+| Backend | Node.js, Express.js (ES6) |
 | Database | MongoDB Atlas |
-| Frontend | EJS Templates, Tailwind CSS |
+| Frontend | ReactJS (Vite), Tailwind CSS |
 | Authentication | Express-Session and JWT |
 | File Uploads | Multer |
 | Runtime | Node.js (v22) |
@@ -48,24 +48,34 @@ Follow these steps to set up eMarket on your local machine 👇
 git clone https://github.com/sarthacker/eMarket.git
 cd eMarket
 ```
-### 2️⃣ Install dependencies
-```bash
-npm install
-```
-### 3️⃣ Configure environment variables
+### 2️⃣ Configure environment variables
 Create a ```.env``` file in the root directory and add:
 ```bash
 JWT_SECRET=your_secret_key
 DB=your_mongodb_connection_string
 PORT=3000
 ```
-### 4️⃣ Run the application
+### 3️⃣ Run the backend
 ```bash
+cd backend
+npm install
 node index
 ```
-### 5️⃣ Open in browser 🌐
+Backend runs at:
 ```bash
 http://localhost:3000
-
 ```
-
+### 4️⃣ Run the frontend
+```bash
+cd frontend
+npm install
+nom run dev
+```
+Frontend runs at:
+```bash
+http://localhost:5173
+```
+### 5️⃣ Open in browser
+```bash
+http://localhost:5173
+```
