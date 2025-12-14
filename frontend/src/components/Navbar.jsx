@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
 const Navbar = () => {
@@ -19,17 +19,23 @@ const Navbar = () => {
     }
   };
 
+  // Helper function for nav link styling
+  const navLinkClass = ({ isActive }) =>
+    isActive
+      ? "text-blue-600 font-semibold"
+      : "text-gray-600 hover:text-blue-600";
+
   return (
     <nav className="bg-white shadow-md">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2">
+        <NavLink to="/" className="flex items-center space-x-2">
           <img
             src="/logo/logo.png"
             alt="eMarket Logo"
-            className="w-30 h-10"
+            className="w-auto h-10"
           />
-        </Link>
+        </NavLink>
 
         {/* Navigation Links */}
         <div className="flex items-center gap-6">
@@ -39,26 +45,26 @@ const Navbar = () => {
                 Welcome, <strong>{user?.username}</strong>
               </span>
 
-              <Link
+              <NavLink
                 to="/create"
-                className="text-gray-600 hover:text-blue-600"
+                className={navLinkClass}
               >
                 Create Listing
-              </Link>
+              </NavLink>
 
-              <Link
+              <NavLink
                 to="/my-listings"
-                className="text-gray-600 hover:text-blue-600"
+                className={navLinkClass}
               >
                 My Listings
-              </Link>
+              </NavLink>
 
-              <Link
+              <NavLink
                 to="/about"
-                className="text-gray-600 hover:text-blue-600"
+                className={navLinkClass}
               >
                 About Us
-              </Link>
+              </NavLink>
 
               <button
                 onClick={handleLogout}
@@ -69,26 +75,38 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Link
+              <NavLink
                 to="/about"
-                className="text-gray-600 hover:text-blue-600 font-medium"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-blue-600 font-semibold"
+                    : "text-gray-600 hover:text-blue-600 font-medium"
+                }
               >
                 About Us
-              </Link>
+              </NavLink>
 
-              <Link
+              <NavLink
                 to="/login"
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-blue-700 text-white px-4 py-2 rounded-lg"
+                    : "bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                }
               >
                 Login
-              </Link>
+              </NavLink>
 
-              <Link
+              <NavLink
                 to="/signup"
-                className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-green-700 text-white px-4 py-2 rounded-lg"
+                    : "bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
+                }
               >
                 Sign Up
-              </Link>
+              </NavLink>
             </>
           )}
         </div>
