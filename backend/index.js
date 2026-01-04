@@ -10,7 +10,7 @@ import bcrypt from 'bcrypt';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { v2 as cloudinary } from 'cloudinary';
-import { CloudinaryStorage } from 'multer-storage-cloudinary';
+import CloudinaryStorage  from 'multer-storage-cloudinary';
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -64,7 +64,6 @@ const upload = multer({
 import Listing from './models/listings.js';
 import User from './models/user.js';
 import Bid from './models/bid.js'
-import { request } from 'http';
 
 // Connect to db
 mongoose.connect(db) // async method
