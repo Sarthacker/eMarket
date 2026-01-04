@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useAuth } from "../components/AuthContext";
-import { API_URL } from "../config";
+import { API_URL, getImageUrl } from "../config";
 
 function Items(){
   const { id } = useParams();
@@ -118,7 +118,7 @@ function Items(){
             <img
               src={
                 item.image && item.image.trim() !== ""
-                  ? item.image
+                  ? getImageUrl(item.image)
                   : "/logo/default.png"
               }
               alt={item.name}

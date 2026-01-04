@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { API_URL } from "../config";
+import { API_URL, getImageUrl } from "../config";
 
 const Home = () => {
   const [activeItems, setActiveItems] = useState([]);
@@ -77,7 +77,7 @@ const Home = () => {
                 <img
                   src={
                     item.image && item.image.trim() !== ""
-                      ? item.image
+                      ? getImageUrl(item.image)
                       : "/logo/default.png"
                   }
                   alt={item.name}
@@ -131,7 +131,7 @@ const Home = () => {
                 <img
                   src={
                     item.image && item.image.trim() !== ""
-                      ? item.image
+                      ? getImageUrl(item.image)
                       : "/logo/default.png"
                   }
                   alt={item.name}

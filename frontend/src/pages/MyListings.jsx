@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useAuth } from "../components/AuthContext";
-import { API_URL } from "../config";
+import { API_URL, getImageUrl } from "../config";
 
 function MyListings(){
   const { user, isLoggedIn } = useAuth();
@@ -58,7 +58,7 @@ function MyListings(){
                 <img
                   src={
                     listing.image && listing.image.trim() !== ""
-                      ? listing.image
+                      ? getImageUrl(listing.image)
                       : "/logo/default.png"
                   }
                   alt={listing.title}
