@@ -34,7 +34,7 @@ Welcome to **eMarket**, a dynamic and modern **online auction platform** built u
 | Database | MongoDB Atlas |
 | Frontend | ReactJS (Vite), Tailwind CSS |
 | Authentication | Express-Session and JWT |
-| File Uploads | Multer |
+| File Uploads | Multer, Cloudinary |
 | Runtime | Node.js (v22) |
 
 ---
