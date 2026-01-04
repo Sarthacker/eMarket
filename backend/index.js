@@ -9,6 +9,8 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import { v2 as cloudinary } from 'cloudinary';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -37,33 +39,26 @@ app.use(cors({
 // serve public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
-// Configure multer for file uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'public/uploads/'); // Save images to public/uploads/
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
+// Configure multer with Cloudinary storage
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'emarket', // Folder name in Cloudinary
+    allowed_formats: ['jpeg', 'jpg', 'png', 'gif', 'webp'],
+    transformation: [{ width: 800, height: 800, crop: 'limit' }] // Optional: resize images
   }
 });
 
 const upload = multer({ 
   storage: storage,
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
-  fileFilter: function (req, file, cb) {
-    const allowedTypes = /jpeg|jpg|png|gif|webp/;
-    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-    const mimetype = allowedTypes.test(file.mimetype);
-    
-    if (mimetype && extname) {
-      return cb(null, true);
-    }
-    else {
-      cb(new Error('Only image files are allowed!'));
-    }
-  }
+  limits: { fileSize: 5 * 1024 * 1024 } // 5MB limit
 });
 
 import Listing from './models/listings.js';
@@ -236,7 +231,7 @@ app.post('/api/listings', auth, upload.single('image'), async (request, response
       startingBid,
       currentBid: startingBid,
       endDate: parsedDate,
-      image: request.file ? `/uploads/${request.file.filename}` : null,
+      image: request.file ? request.file.path : null, // Cloudinary returns full URL in path
       userId: user._id
     });
     await newListing.save();
@@ -382,7 +377,7 @@ app.put('/api/listings/:id', auth, upload.single('image'), async(request,respons
     item.startingBid = startingBid;
     item.endDate = parsedDate;
     if(request.file){
-      item.image = `/uploads/${request.file.filename}`;
+      item.image = request.file.path; // Cloudinary returns full URL in path
     }
 
     await item.save();
