@@ -150,7 +150,7 @@ function Items(){
                 <p className="text-lg font-semibold text-gray-700">
                   Current Highest Bid:
                 </p>
-                <p className="text-2xl font-bold text-blue-600">
+                <p className="text-2xl font-bold text-purple-600">
                   ₹{currentBid}
                 </p>
                 {highestBidingUser?.username && (
@@ -193,7 +193,7 @@ function Items(){
                   <p className="mt-2 text-gray-700">
                     The item has been bought by{" "}
                     <b>{highestBidingUser.username}</b> for{" "}
-                    <span className="font-semibold text-blue-600">
+                    <span className="font-semibold text-purple-600">
                       ₹{item.currentBid}
                     </span>
                     .
@@ -205,13 +205,21 @@ function Items(){
                 )}
               </div>
             ) : isOwner ? (
-              /* Owner: End Auction */
-              <button
-                onClick={handleEndAuction}
-                className="mt-6 w-full bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition"
-              >
-                End Auction
-              </button>
+              /* Owner: Edit & End Auction */
+              <div className="mt-6 flex gap-3">
+                <button
+                  onClick={() => navigate(`/item/${id}/edit`)}
+                  className="flex-1 bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition"
+                >
+                  Edit Item
+                </button>
+                <button
+                  onClick={handleEndAuction}
+                  className="flex-1 bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition"
+                >
+                  End Auction
+                </button>
+              </div>
             ) : (
               /* Bid Form */
               <form onSubmit={handleBid} className="mt-6 space-y-4">
@@ -225,13 +233,13 @@ function Items(){
                   value={bidAmount}
                   onChange={(e) => setBidAmount(e.target.value)}
                   placeholder="Enter your bid amount"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
                 />
 
                 {isLoggedIn ? (
                   <button
                     type="submit"
-                    className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+                    className="w-full bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition"
                   >
                     Submit Bid
                   </button>
@@ -239,7 +247,7 @@ function Items(){
                   <button
                     type="button"
                     onClick={() => navigate("/login")}
-                    className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+                    className="w-full bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition"
                   >
                     Login to Bid
                   </button>

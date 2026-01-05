@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 const ListingCreated = ({ isLoggedIn, user }) => {
   useEffect(() => {
@@ -18,19 +19,11 @@ const ListingCreated = ({ isLoggedIn, user }) => {
         <div className="bg-white shadow-md rounded-2xl p-10 text-center max-w-lg w-full">
           {/* Success Icon */}
           <div className="flex justify-center mb-6">
-            <svg
-              className="w-16 h-16 text-green-500"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
+            <DotLottieReact
+              src="https://lottie.host/31a87704-d84f-45a2-916e-3d65cbc5ecc9/EuDGbrxFFI.lottie"
+              loop
+              autoplay
+            />
           </div>
 
           <h2 className="text-3xl font-bold text-gray-700 mb-4">
@@ -41,7 +34,7 @@ const ListingCreated = ({ isLoggedIn, user }) => {
             Your item has been listed for auction. You can track it from your{" "}
             <Link
               to="/my-listings"
-              className="text-blue-600 hover:underline"
+              className="text-purple-600 hover:underline"
             >
               My Listings
             </Link>{" "}
@@ -51,14 +44,14 @@ const ListingCreated = ({ isLoggedIn, user }) => {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
               to="/create"
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
+              className="bg-purple-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-purple-700 transition"
             >
               List Another Item
             </Link>
 
             <Link
               to="/"
-              className="border border-blue-600 text-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-blue-50 transition"
+              className="border border-purple-600 text-purple-600 px-6 py-2 rounded-lg font-semibold hover:bg-purple-50 transition"
             >
               Go to Home
             </Link>

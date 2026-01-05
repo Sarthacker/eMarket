@@ -14,12 +14,12 @@ const About = ({ isLoggedIn, user }) => {
 
       {/* About Section */}
       <section className="container mx-auto px-6 py-16 text-center flex-1">
-        <h1 className="text-4xl font-bold text-blue-600 mb-4">
+        <h1 className="text-4xl font-bold text-purple-600 mb-4">
           About eMarket
         </h1>
         <p className="max-w-2xl mx-auto text-gray-600 text-lg leading-relaxed">
           Welcome to{" "}
-          <strong className="text-blue-600">eMarket</strong> — an online
+          <strong className="text-purple-600">eMarket</strong> — an online
           auction platform designed to connect buyers and sellers. Whether
           you’re looking to buy rare collectibles or sell your items to the
           highest bidder, eMarket makes the process simple, secure, and fun.
@@ -32,7 +32,7 @@ const About = ({ isLoggedIn, user }) => {
           <img
             src="/logo/about-img.png"
             alt="Profile"
-            className="w-32 h-32 mx-auto rounded-full border-4 border-blue-500 mb-4"
+            className="w-32 h-32 mx-auto rounded-full border-4 border-purple-500 mb-4"
           />
           <h3 className="text-xl font-semibold">Sarthak</h3>
           <p className="text-gray-500 mb-4">Developer & Creator</p>
@@ -50,7 +50,7 @@ const About = ({ isLoggedIn, user }) => {
               href="https://www.linkedin.com/in/sarthak-kumar-singh-6bb4ab258"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+              className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
             >
               LinkedIn
             </a>

@@ -96,7 +96,7 @@ const Signup = () => {
               required
               pattern="^(?!\.)([a-z0-9@#&_]{3,})$"
               title="Username must be at least 3 characters, cannot start with '.', and can contain lowercase letters, numbers, and @ # & _"
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
 
@@ -114,7 +114,7 @@ const Signup = () => {
               required
               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$"
               title="Password must be alpha-numeric with at least 8 characters long and include at least one uppercase letter and one lowercase letter"
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
 
@@ -130,7 +130,7 @@ const Signup = () => {
               onChange={handleChange}
               placeholder="Re-enter your password"
               required
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
 
@@ -147,7 +147,7 @@ const Signup = () => {
           Already have an account?{" "}
           <Link
             to="/login"
-            className="text-blue-600 hover:underline"
+            className="text-purple-600 hover:underline"
           >
             Login here
           </Link>

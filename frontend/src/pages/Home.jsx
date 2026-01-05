@@ -54,7 +54,7 @@ const Home = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="text-center py-16 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+      <section className="text-center py-16 bg-gradient-to-r from-purple-600 to-indigo-700 text-white">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
           Welcome to eMarket
         </h1>
@@ -63,7 +63,7 @@ const Home = () => {
         </p>
         <Link
           to="/create"
-          className="bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition"
+          className="bg-white text-purple-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition"
         >
           Start Selling
         </Link>
@@ -80,7 +80,7 @@ const Home = () => {
             {activeItems.map((item) => (
               <div
                 key={item._id}
-                className="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden"
+                className="bg-white rounded-lg shadow hover:shadow-2xl transition overflow-hidden"
               >
                 <img
                   src={
@@ -96,15 +96,15 @@ const Home = () => {
                   <p className="text-sm text-gray-500 mb-2">
                     {item.description.substring(0, 60)}...
                   </p>
-                  <p className="text-blue-600 font-semibold mb-2">
+                  <p className="text-black font-semibold mb-2">
                     Starting Bid: ₹{item.startingBid}
                   </p>
-                  <p className="text-blue-600 font-semibold mb-4">
+                  <p className="text-purple-600 font-semibold mb-4">
                     Current Bid: ₹{item.currentBid}
                   </p>
                   <Link
                     to={`/item/${item._id}`}
-                    className="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                    className="inline-block bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-900 transition"
                   >
                     Place a Bid
                   </Link>
@@ -115,7 +115,7 @@ const Home = () => {
         ) : (
           <p className="text-center text-gray-500 mt-8">
             No active auctions at the moment. Be the first to{" "}
-            <Link to="/create" className="text-blue-600 hover:underline">
+            <Link to="/create" className="text-indigo-600 hover:underline">
               list an item
             </Link>
             !
@@ -134,7 +134,7 @@ const Home = () => {
             {finishedItems.map((item) => (
               <div
                 key={item._id}
-                className="bg-gray-100 rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden"
+                className="bg-white rounded-lg shadow hover:shadow-2xl transition overflow-hidden"
               >
                 <img
                   src={
@@ -158,7 +158,7 @@ const Home = () => {
                   </p>
                   <Link
                     to={`/item/${item._id}`}
-                    className="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
+                    className="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-800 transition"
                   >
                     View Item
                   </Link>

@@ -23,8 +23,8 @@ const Navbar = () => {
   // Helper function for nav link styling
   const navLinkClass = ({ isActive }) =>
     isActive
-      ? "text-blue-600 font-semibold"
-      : "text-gray-600 hover:text-blue-600";
+      ? "text-purple-600 font-semibold"
+      : "text-gray-600 hover:text-purple-600";
 
   return (
     <nav className="bg-white shadow-md">
@@ -80,8 +80,8 @@ const Navbar = () => {
                 to="/about"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-blue-600 font-semibold"
-                    : "text-gray-600 hover:text-blue-600 font-medium"
+                    ? "text-purple-600 font-semibold"
+                    : "text-gray-600 hover:text-purple-600 font-medium"
                 }
               >
                 About Us
@@ -91,8 +91,8 @@ const Navbar = () => {
                 to="/login"
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-blue-700 text-white px-4 py-2 rounded-lg"
-                    : "bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                    ? "bg-purple-700 text-white px-4 py-2 rounded-lg"
+                    : "bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition"
                 }
               >
                 Login

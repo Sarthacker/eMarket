@@ -10,6 +10,7 @@ import About from "./pages/About";
 import CreateListing from "./pages/CreateListings";
 import NotFound from "./pages/NotFound";
 import EditItem from "./pages/EditItem";
+import ListingCreated from "./pages/ListingCreated"
 
 export default function App() {
   return (
@@ -38,6 +39,7 @@ export default function App() {
             <EditItem />
           </ProtectedRoute>
         } />
+        <Route path="/listing-created" element={<ListingCreated/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AuthProvider>

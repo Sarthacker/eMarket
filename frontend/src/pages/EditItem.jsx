@@ -130,7 +130,7 @@ const EditItem = () => {
 
       <section className="container mx-auto px-4 py-12 flex-1">
         <div className="bg-white shadow-md rounded-2xl p-8 max-w-2xl mx-auto">
-          <h1 className="text-3xl font-bold text-center text-blue-600 mb-8">
+          <h1 className="text-3xl font-bold text-center text-purple-600 mb-8">
             Edit Your Listing
           </h1>
 
@@ -150,7 +150,7 @@ const EditItem = () => {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"
+                className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500"
               />
             </div>
 
@@ -163,7 +163,7 @@ const EditItem = () => {
                 required
                 value={formData.description}
                 onChange={handleChange}
-                className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"
+                className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500"
               />
             </div>
 
@@ -178,7 +178,7 @@ const EditItem = () => {
                 required
                 value={formData.startingBid}
                 onChange={handleChange}
-                className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"
+                className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500"
               />
             </div>
 
@@ -193,7 +193,7 @@ const EditItem = () => {
                 required
                 value={formData.endDate}
                 onChange={handleChange}
-                className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"
+                className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500"
               />
             </div>
 
@@ -229,7 +229,7 @@ const EditItem = () => {
             <div className="text-center mt-8">
               <button
                 type="submit"
-                className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+                className="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition"
               >
                 Save Changes
               </button>

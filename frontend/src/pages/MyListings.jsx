@@ -85,7 +85,7 @@ function MyListings(){
                   <div className="flex justify-between">
                     <Link
                       to={`/item/${listing._id}`}
-                      className="text-blue-600 hover:underline"
+                      className="text-purple-600 hover:underline"
                     >
                       View
                     </Link>
@@ -110,7 +110,7 @@ function MyListings(){
             </h3>
             <Link
               to="/create"
-              className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
+              className="bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition"
             >
               Create Your First Listing
             </Link>
