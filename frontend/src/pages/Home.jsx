@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { API_URL, getImageUrl } from "../config";
+import { PropagateLoader } from "react-spinners";
 
 const Home = () => {
   const [activeItems, setActiveItems] = useState([]);
@@ -38,7 +39,11 @@ const Home = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center text-gray-500">
-        Loading...
+        <PropagateLoader
+          color="#d053e6"
+          size={25}
+          speedMultiplier={1}
+        />
       </div>
     );
   }

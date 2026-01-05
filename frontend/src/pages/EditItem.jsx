@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useAuth } from "../components/AuthContext";
 import { API_URL, getImageUrl } from "../config";
+import {PropagateLoader} from 'react-spinners';
 
 const EditItem = () => {
   const { id } = useParams();
@@ -114,7 +115,11 @@ const EditItem = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center text-gray-500">
-        Loading...
+        <PropagateLoader
+          color="#d053e6"
+          size={25}
+          speedMultiplier={1}
+        />
       </div>
     );
   }

@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useAuth } from "../components/AuthContext";
 import { API_URL, getImageUrl } from "../config";
+import { PropagateLoader } from "react-spinners";
 
 function MyListings(){
   const { user, isLoggedIn } = useAuth();
@@ -49,7 +50,13 @@ function MyListings(){
         </h2>
 
         {loading ? (
-          <p className="text-center text-gray-500">Loading...</p>
+          <div className="min-h-screen flex items-center justify-center text-gray-500">
+            <PropagateLoader
+              color="#d053e6"
+              size={25}
+              speedMultiplier={1}
+            />
+          </div>
         ) : listings.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {listings.map((listing) => (
