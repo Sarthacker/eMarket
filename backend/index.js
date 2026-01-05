@@ -9,8 +9,8 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import { v2 as cloudinary } from 'cloudinary';
-import CloudinaryStorage  from 'multer-storage-cloudinary';
+import cloudinary from 'cloudinary';
+import CloudinaryStorage from 'multer-storage-cloudinary';
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -40,7 +40,7 @@ app.use(cors({
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Configure Cloudinary
-cloudinary.config({
+cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
@@ -360,9 +360,20 @@ app.get('/api/listings/:id/edit', auth, async(request,response)=>{
 });
 
 // Update a listing
-app.put('/api/listings/:id', auth, upload.single('image'), async(request,response)=>{
+app.put('/api/listings/:id', auth, (req, res, next) => {
+  upload.single('image')(req, res, (err) => {
+    if (err) {
+      console.error('Upload error:', err);
+      return res.status(500).json({ error: 'Upload failed', details: err.message });
+    }
+    next();
+  });
+}, async(request,response)=>{
   try {
     const item = await Listing.findById(request.params.id);
+    if (!item) {
+      return response.status(404).json({ error: 'Listing not found' });
+    }
     const listedBy = await User.findById(item.userId);
     if(listedBy.username !== request.user.username){
       return response.status(401).json({ error: 'Unauthorized' });
@@ -376,15 +387,16 @@ app.put('/api/listings/:id', auth, upload.single('image'), async(request,respons
     item.startingBid = startingBid;
     item.endDate = parsedDate;
     if(request.file){
-      item.image = request.file.path; // Cloudinary returns full URL in path
+      console.log('File uploaded:', request.file);
+      item.image = request.file.path || request.file.secure_url || request.file.url;
     }
 
     await item.save();
     return response.json({ message: 'Listing updated', item });
   }
   catch(error){
-    console.error(`Update Failed: ${error}`);
-    return response.status(500).json({ error: 'Error updating the item' });
+    console.error(`Update Failed:`, error);
+    return response.status(500).json({ error: 'Error updating the item', details: error.message });
   }
 });
 
@@ -392,9 +404,3 @@ app.put('/api/listings/:id', auth, upload.single('image'), async(request,respons
 app.use('/api/{*path}', (request,response)=>{
   return response.status(404).json({ error: 'API endpoint not found' });
 });
-
-// Serve React app in production (optional - for when you build and deploy)
-// app.use(express.static(path.join(__dirname, 'frontend/dist')));
-// app.get('*', (request, response) => {
-//   response.sendFile(path.join(__dirname, 'frontend/dist', 'index.html'));
-// });
