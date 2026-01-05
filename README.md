@@ -69,7 +69,7 @@ http://localhost:3000
 ```bash
 cd frontend
 npm install
-nom run dev
+npm run dev
 ```
 Frontend runs at:
 ```bash
@@ -79,3 +79,4 @@ http://localhost:5173
 ```bash
 http://localhost:5173
 ```
+
