@@ -23,7 +23,9 @@ function MyListings(){
         const data = await res.json();
 
         if (res.ok) {
-          setListings(data.listings || []);
+          // Filter out deleted listings
+          const filteredListings = (data.listings || []).filter(listing => !listing.isDeleted);
+          setListings(filteredListings);
         }
       } catch (err) {
         console.error("Failed to fetch listings", err);

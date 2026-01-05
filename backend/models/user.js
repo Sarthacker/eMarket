@@ -19,7 +19,17 @@ const userSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "Listing"
     }
-  ]
+  ],
+  isDeleted:{
+    type:Boolean,
+    default:false
+  },
+  role: {
+    type: String,
+    enum: ["user", "admin"],
+    default: "user",
+    required: true
+  }
 });
 
 const User=mongoose.model('User',userSchema); // user model

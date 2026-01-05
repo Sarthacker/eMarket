@@ -19,8 +19,11 @@ const Home = () => {
         const res = await fetch(`${API_URL}/api/listings`, { credentials: "include" });
         const data = await res.json();
         if (res.ok) {
-          setActiveItems(data.activeItems || []);
-          setFinishedItems(data.finishedItems || []);
+          // Filter out deleted items
+          const filteredActiveItems = (data.activeItems || []).filter(item => !item.isDeleted);
+          const filteredFinishedItems = (data.finishedItems || []).filter(item => !item.isDeleted);
+          setActiveItems(filteredActiveItems);
+          setFinishedItems(filteredFinishedItems);
         }
       } catch (err) {
         console.error("Failed to fetch listings", err);

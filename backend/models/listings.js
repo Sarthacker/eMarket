@@ -34,6 +34,10 @@ const listingSchema=new mongoose.Schema({
         ref: 'User', // reference to User model
         required: true
     },
+    isDeleted:{
+        type:Boolean,
+        default:false
+    }
 },{timestamps:true});
 
 const Listing=mongoose.model('Listing',listingSchema); // listing model

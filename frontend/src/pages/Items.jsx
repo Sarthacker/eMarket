@@ -33,6 +33,11 @@ function Items(){
           return;
         }
 
+        // Redirect if item is deleted
+        if (data.item?.isDeleted) {
+          navigate("/not-found");
+          return;
+        }
         setItem(data.item);
         setListedBy(data.listedBy);
         setHighestBidingUser(data.highestBidingUser);

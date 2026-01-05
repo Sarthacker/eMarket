@@ -6,3 +6,4 @@ views
 node_modules
 package.json
 package-lock.json
+backend/models/db_script.js
