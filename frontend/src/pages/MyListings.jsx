@@ -38,6 +38,18 @@ function MyListings(){
     fetchListings();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-gray-500">
+        <PropagateLoader
+          color="#d053e6"
+          size={25}
+          speedMultiplier={1}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
       {/* Navbar */}
@@ -48,16 +60,7 @@ function MyListings(){
         <h2 className="text-3xl font-semibold text-center mb-8">
           My Listings
         </h2>
-
-        {loading ? (
-          <div className="min-h-screen flex items-center justify-center text-gray-500">
-            <PropagateLoader
-              color="#d053e6"
-              size={25}
-              speedMultiplier={1}
-            />
-          </div>
-        ) : listings.length > 0 ? (
+         {listings.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {listings.map((listing) => (
               <div
